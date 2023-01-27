@@ -7,11 +7,11 @@ import ShowsContext from "../context/shows/showsContext";
 import Loader from "../components/Loader";
 import { useParams } from "react-router-dom";
 
-const Singlepage = ({match}) => {
+const Singlepage = () => {
   const { getSingleShow, singleShow, loading } = useContext(ShowsContext);
-  // const {id} = useParams();
+  const {id} = useParams();
   useEffect(() => {
-    getSingleShow(match.params.id);
+    getSingleShow(id);
 
     // eslint-disable-next-line
   }, []);
@@ -47,27 +47,12 @@ const Singlepage = ({match}) => {
                   {genre}
                 </span>
               ))}
-            <p>
-              <strong>Status:</strong> {singleShow.status && singleShow.status}
-            </p>
+          
             <p>
               <strong>Rating:</strong>{" "}
               {singleShow.rating ? singleShow.rating.average : "No rating"}
             </p>
-            <p>
-              <strong>Offical Site:</strong>{" "}
-              {singleShow.officalSite ? (
-                <a
-                  href={singleShow.officalSite}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {singleShow.officalSite}
-                </a>
-              ) : (
-                "No offical site"
-              )}
-            </p>
+           
             <p>{singleShow.summary && removeTags(singleShow.summary)}</p>
           </div>
         </div>
